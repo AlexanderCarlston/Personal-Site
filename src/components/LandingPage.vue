@@ -4,8 +4,10 @@
 
 <script>
 export default {
-  name: 'HelloWorld'
+  name: 'LandingPage'
 }
+
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
