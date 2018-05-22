@@ -1,5 +1,5 @@
 <template>
-  <v-layout v-bind="binding">
+  <v-layout>
     <v-flex>
       <v-card dark color="primary">
         <v-card-text>Alexander Carlston</v-card-text>
