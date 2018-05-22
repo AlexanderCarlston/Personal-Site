@@ -7,7 +7,15 @@
       app
     >
       <v-list dense>
-        <v-list-tile @click="">
+        <v-list-tile :to='{name: "LandingPage"}'>
+          <v-list-tile-action>
+            <v-icon>home</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Home</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile :to='{name: "AboutMe"}' >
           <v-list-tile-action>
             <v-icon>face</v-icon>
           </v-list-tile-action>
@@ -29,7 +37,7 @@
           <v-list-tile
             v-for="(tech, i) in technology"
             :key="i"
-            @click=""
+            @click="changeCurrentTech"
           >
             <v-list-tile-title v-text="tech.name"></v-list-tile-title>
             <v-list-tile-action>
@@ -72,6 +80,11 @@
 <script>
 export default {
   name: 'App',
+  methods: {
+    changeCurrentTech() {
+      this._data.CurrentTech = event.target.innerText
+    }
+  },
   data: () => ({
     drawer: false,
     technology: [{
@@ -116,7 +129,8 @@ export default {
       card: [
 
       ]
-    }]
+    }],
+    CurrentTech: ""
   })
 }
 </script>

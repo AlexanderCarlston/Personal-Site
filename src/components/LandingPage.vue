@@ -10,7 +10,6 @@
         </v-layout>
       </v-container>
     </v-jumbotron>
-    <v-btn block color="secondary" dark>Animate</v-btn>
     <v-layout justify-center>
       <TechCanvas></TechCanvas>
     </v-layout>
