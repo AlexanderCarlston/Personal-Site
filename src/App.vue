@@ -60,8 +60,8 @@
       <v-toolbar-title>Learn More</v-toolbar-title>
     </v-toolbar>
     <v-content>
-      <v-container fluid fill-height>
-        <v-layout justify-center align-center>
+      <v-container>
+        <v-layout>
           <router-view></router-view>
         </v-layout>
       </v-container>
@@ -76,22 +76,46 @@ export default {
     drawer: false,
     technology: [{
       name: "HTML",
-      image: "devicon-html5-plain"
+      image: "devicon-html5-plain",
+      description: "",
+      card: [
+
+      ]
     }, {
       name: "CSS",
-      image: "devicon-css3-plain"
+      image: "devicon-css3-plain",
+      description: "",
+      card: [
+
+      ]
     }, {
       name: "JavaScript",
-      image: "devicon-javascript-plain"
+      image: "devicon-javascript-plain",
+      description: "",
+      card: [
+
+      ]
     }, {
       name: "Vue.js",
-      image: "devicon-vuejs-plain"
+      image: "devicon-vuejs-plain",
+      description: "",
+      card: [
+
+      ]
     }, {
       name: "Node.js",
-      image: "devicon-nodejs-plain"
+      image: "devicon-nodejs-plain",
+      description: "",
+      card: [
+
+      ]
     }, {
       name: "Express",
-      image: "devicon-express-original"
+      image: "devicon-express-original",
+      description: "",
+      card: [
+
+      ]
     }]
   })
 }
