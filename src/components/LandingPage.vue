@@ -1,11 +1,11 @@
 <template>
   <v-container grid-list-xl>
     <Name></Name>
-    <v-jumbotron color="primary" dark height="200px">
+    <v-jumbotron color="secondary" dark height="200px">
       <v-container fill-height>
         <v-layout align-center>
           <v-flex text-xs-center>
-            <h3 class="display-3">Description maybe with button to shorten</h3>
+            <h3 class="display-3">My name is Alexander Carlston and I am a full stack web developer.</h3>
           </v-flex>
         </v-layout>
       </v-container>

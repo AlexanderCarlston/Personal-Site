@@ -8,8 +8,16 @@ import App from './App'
 import router from './router'
 
 import anime from 'animejs'
+import colors from 'vuetify/es5/util/colors'
 
-Vue.use(Vuetify)
+Vue.use(Vuetify, {
+  theme: {
+    primary: colors.black,
+    secondary: colors.shades.black,
+    accent: colors.indigo.base
+  }
+})
+
 
 Vue.config.productionTip = false
 

@@ -1,12 +1,12 @@
 <template>
-  <v-container>
+  <v-container grid-list-xl>
   <v-layout>
     <v-flex xl12>
       <Name></Name>
     </v-flex>
   </v-layout>
   <v-parallax src="../static/fishthingy.jpg"></v-parallax>
-  <v-jumbotron color="primary" dark height="150px">
+  <v-jumbotron color="secondary" dark height="100px">
    <v-container fill-height>
      <v-layout align-center>
        <v-flex text-xs-center>
