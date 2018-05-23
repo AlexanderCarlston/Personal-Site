@@ -7,7 +7,7 @@
       app
     >
       <v-list dense>
-        <v-list-tile :to='{name: "LandingPage"}'>
+        <v-list-tile @click="hideDrawer" :to='{name: "LandingPage"}'>
           <v-list-tile-action>
             <v-icon>home</v-icon>
           </v-list-tile-action>
@@ -15,7 +15,7 @@
             <v-list-tile-title>Home</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile :to='{name: "AboutMe"}' >
+        <v-list-tile @click="hideDrawer" :to='{name: "AboutMe"}' >
           <v-list-tile-action>
             <v-icon>face</v-icon>
           </v-list-tile-action>
@@ -38,6 +38,7 @@
             v-for="(tech, i) in technology"
             :key="i"
             @click="changeCurrentTech"
+            :to='{name: "CurrentTech"}'
           >
             <v-list-tile-title v-text="tech.name"></v-list-tile-title>
             <v-list-tile-action>
@@ -45,7 +46,7 @@
             </v-list-tile-action>
           </v-list-tile>
         </v-list-group>
-        <v-list-tile @click="">
+        <v-list-tile @click="hideDrawer">
           <v-list-tile-action>
             <v-icon>work</v-icon>
           </v-list-tile-action>
@@ -53,7 +54,7 @@
             <v-list-tile-title>My Work</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile @click="">
+        <v-list-tile @click="hideDrawer">
           <v-list-tile-action>
             <v-icon>alternate_email</v-icon>
           </v-list-tile-action>
@@ -70,7 +71,7 @@
     <v-content>
       <v-container>
         <v-layout>
-          <router-view></router-view>
+          <router-view :CurrentTechObject="CurrentTechObject"></router-view>
         </v-layout>
       </v-container>
     </v-content>
@@ -82,7 +83,14 @@ export default {
   name: 'App',
   methods: {
     changeCurrentTech() {
-      this._data.CurrentTech = event.target.innerText
+      this.CurrentTechName = ""
+      var CurrentTechName = event.target.innerText
+      this.CurrentTechName = CurrentTechName
+      this.CurrentTechObject = this._data.technology.filter(tech => tech.name === this.CurrentTechName)[0]
+      this.drawer = false
+    },
+    hideDrawer() {
+      this.drawer = false
     }
   },
   data: () => ({
@@ -92,45 +100,76 @@ export default {
       image: "devicon-html5-plain",
       description: "",
       card: [
-
+        {
+          title: "TestTitle",
+          subTitle: "SubTitle",
+          link: "link",
+          description: "desc"
+        }
       ]
     }, {
       name: "CSS",
       image: "devicon-css3-plain",
       description: "",
       card: [
-
+        {
+          title: "",
+          subTitle: "",
+          link: "",
+          description: ""
+        }
       ]
     }, {
       name: "JavaScript",
       image: "devicon-javascript-plain",
       description: "",
       card: [
-
+        {
+          title: "",
+          subTitle: "",
+          link: "",
+          description: ""
+        }
       ]
     }, {
       name: "Vue.js",
       image: "devicon-vuejs-plain",
       description: "",
       card: [
-
+        {
+          title: "",
+          subTitle: "",
+          link: "",
+          description: ""
+        }
       ]
     }, {
       name: "Node.js",
       image: "devicon-nodejs-plain",
       description: "",
       card: [
-
+        {
+          title: "",
+          subTitle: "",
+          link: "",
+          description: ""
+        }
       ]
     }, {
       name: "Express",
       image: "devicon-express-original",
       description: "",
       card: [
-
+        {
+          title: "",
+          subTitle: "",
+          link: "",
+          description: ""
+        }
       ]
     }],
-    CurrentTech: ""
+    CurrentTechName: "test",
+    CurrentTechObject: {}
   })
 }
 </script>
