@@ -11,7 +11,7 @@
       </v-flex>
     </v-layout>
     <v-layout row>
-      <v-flex v-for="card in CurrentTechObject.card" xs4>
+      <v-flex v-for="card in CurrentTechObject.card" :key="i" xs4>
         <v-card >
           <v-card-title primary-title>
             <div>

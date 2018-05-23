@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import LandingPage from '@/components/LandingPage.vue'
 import AboutMe from '@/components/AboutMe.vue'
 import CurrentTech from '@/components/CurrentTech.vue'
+import MyWork from '@/components/MyWork.vue'
+import ContactMe from '@/components/ContactMe.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -21,6 +23,16 @@ export default new Router({
       path: '/CurrentTech',
       name: 'CurrentTech',
       component: CurrentTech
+  },
+    {
+      path: '/MyWork',
+      name: 'MyWork',
+      component: MyWork
+  },
+    {
+    path: '/ContactMe',
+    name: 'ContactMe',
+    component: ContactMe
   }
 ]
 })

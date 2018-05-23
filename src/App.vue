@@ -46,7 +46,7 @@
             </v-list-tile-action>
           </v-list-tile>
         </v-list-group>
-        <v-list-tile @click="hideDrawer">
+        <v-list-tile :to='{name: "MyWork"}' @click="hideDrawer">
           <v-list-tile-action>
             <v-icon>work</v-icon>
           </v-list-tile-action>
@@ -54,7 +54,7 @@
             <v-list-tile-title>My Work</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile @click="hideDrawer">
+        <v-list-tile :to='{name: "ContactMe"}' @click="hideDrawer">
           <v-list-tile-action>
             <v-icon>alternate_email</v-icon>
           </v-list-tile-action>
