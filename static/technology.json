@@ -1,0 +1,75 @@
+[
+   {
+  "name" : "HTML",
+  "image" : "devicon-html5-plain",
+  "description": "No matter what you do you can't avoid this language. Semantic HTML is something important to try to utilize for SEO and helping the visually impaired.",
+  "card": [
+    {
+      "title" : "Semantic HTML",
+      "subTitle" : "My resource",
+      "link" : "https://developer.mozilla.org/en-US/docs/Web/HTML",
+      "description" : "This is a great resource to understand which elements you can and can't use."
+    }
+  ]
+}, {
+  "name" : "CSS",
+  "image" : "devicon-css3-plain",
+  "description": "This is language is a struggle. Flexbox and grid are extremely helpful and CSS frameworks make responsivity easier, learning their grid system is key.",
+  "card": [
+    {
+      "title" : "You Need This.",
+      "subTitle" : "CSS Transitions",
+      "link" : "https://www.w3schools.com/css/css3_transitions.asp",
+      "description" : "This is one of those things that you just need to learn. While you can never completely master CSS (people on codepen aren't human) being able to utilize this is huge for your application"
+    }
+  ]
+}, {
+  "name" : "JavaScript",
+  "image" : "devicon-javascript-plain",
+  "description": "I'm actually in love with Javascript. This is the first langauge where I felt like I was actually coding (higher order functions and promises). Javascript is a meeting ground for developers and will always hold a special place in my heart",
+  "card": [
+    {
+      "title" : "There are a lot of functions.",
+      "subTitle" : "MDN to the rescue!",
+      "link" : "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
+      "description" : "The thing I like most about JavaScript is that the best way to learn is to build with it. If you run in to a comming thing you need to do there's usually a built in method for that (ES6 is especially useful)."
+    }
+  ]
+}, {
+  "name" : "Vue.js",
+  "image" : "devicon-vuejs-plain",
+  "description": "Vue is amazing. Their documentation is intuitive and it's sleek enough to get the job done, without all the extras you usually won't need",
+  "card": [
+    {
+      "title" : "Check out their docs!",
+      "subTitle" : "Their docs are what got me",
+      "link" : "https://vuejs.org/",
+      "description" : "After learning dom manipulation going in to a framework that does the work for you, but also requires you to use javascript logic is a nice feeling. Vue with webpack is very modular and has most of what you need to create a SPA (if not they have something for it you can add)."
+    }
+  ]
+}, {
+  "name" : "Node.js",
+  "image" : "devicon-nodejs-plain",
+  "description": "Having an environment where you can use a language you already know, and is a meeting ground for developers is very intuitive.",
+  "card": [
+    {
+      "title" : "This one was tricky.",
+      "subTitle" : "Javascript on the back-end???",
+      "link" : "https://nodejs.org/en/docs/es6/",
+      "description" : "Since it's obvious how JavaScript is the meeting ground for developers being able to transfer that(with some caveats) makes your site very uniform."
+    }
+  ]
+}, {
+  "name" : "Express",
+  "image" : "devicon-express-original",
+  "description": "This Node.js web application framework works extremely well with Knex and make Full Stack Development easier.",
+  "card": [
+    {
+      "title" : "Another framework?",
+      "subTitle" : "Meant for Node.js",
+      "link" : "",
+      "description" : "This 'module framework' lets you listen for input/connect requests from clients. This works extremely well with Knex's queries."
+    }
+  ]
+}
+]

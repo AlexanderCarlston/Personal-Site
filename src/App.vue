@@ -115,83 +115,19 @@ export default {
         .then(response => {
           console.log('done', response)
         })
+    },
+    animateTechnology() {
+      
     }
+  },
+  mounted(){
+    fetch("../static/technology.json")
+    .then(response => response.json())
+    .then(response => this.technology = response)
   },
   data: () => ({
     drawer: false,
-    technology: [{
-      name: "HTML",
-      image: "devicon-html5-plain",
-      description: "",
-      card: [
-        {
-          title: "TestTitle",
-          subTitle: "SubTitle",
-          link: "link",
-          description: "desc"
-        }
-      ]
-    }, {
-      name: "CSS",
-      image: "devicon-css3-plain",
-      description: "",
-      card: [
-        {
-          title: "",
-          subTitle: "",
-          link: "",
-          description: ""
-        }
-      ]
-    }, {
-      name: "JavaScript",
-      image: "devicon-javascript-plain",
-      description: "",
-      card: [
-        {
-          title: "",
-          subTitle: "",
-          link: "",
-          description: ""
-        }
-      ]
-    }, {
-      name: "Vue.js",
-      image: "devicon-vuejs-plain",
-      description: "",
-      card: [
-        {
-          title: "",
-          subTitle: "",
-          link: "",
-          description: ""
-        }
-      ]
-    }, {
-      name: "Node.js",
-      image: "devicon-nodejs-plain",
-      description: "",
-      card: [
-        {
-          title: "",
-          subTitle: "",
-          link: "",
-          description: ""
-        }
-      ]
-    }, {
-      name: "Express",
-      image: "devicon-express-original",
-      description: "",
-      card: [
-        {
-          title: "",
-          subTitle: "",
-          link: "",
-          description: ""
-        }
-      ]
-    }],
+    technology: [],
     CurrentTechName: "test",
     CurrentTechObject: {}
   })

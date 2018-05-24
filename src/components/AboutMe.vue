@@ -10,7 +10,7 @@
     <v-container fill-height>
       <v-layout align-center>
         <v-flex text-xs-center>
-          <h3 class="display-1">Custom Color</h3>
+          <h3 class="title">I love coding. I know that seems like an obvious sentiment to put on a personal site for jobs, but I honestly couldn't image myself doing anything different. Constantly being challenged, while hurting the ego, is something that I love persisting through (finally not seeing an error in the console is fulfilling)</h3>
         </v-flex>
       </v-layout>
     </v-container>
@@ -20,7 +20,7 @@
   <v-container fill-height>
     <v-layout align-center>
       <v-flex text-xs-center>
-        <h3 class="display-1">Custom Color</h3>
+        <h3 class="title">I think open source isn't only limited to the code. I'm open to criticism and am always looking to learn new technologies, or even how to make my code more readable.</h3>
       </v-flex>
     </v-layout>
   </v-container>

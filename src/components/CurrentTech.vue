@@ -1,14 +1,12 @@
 <template>
   <v-container>
-    <v-layout>
-      <v-flex>
-        <TechCanvas></TechCanvas>
-      </v-flex>
-      <v-flex xs12 sm5 md5>
-        <v-card dark color="green">
-          <v-card-text>{{CurrentTechObject && CurrentTechObject.name}}</v-card-text>
+    <v-layout row wrap justify-center>
+      <v-flex xs12>
+        <v-card dark color="secondary">
+          <v-card-text class="title">{{CurrentTechObject.name}} - {{CurrentTechObject.description}}</v-card-text>
         </v-card>
       </v-flex>
+      <TechCanvas ></TechCanvas>
     </v-layout>
     <v-layout row>
       <v-flex v-for="card in CurrentTechObject.card" :key="card.name" xs4>
@@ -20,7 +18,7 @@
             </div>
           </v-card-title>
           <v-card-actions>
-            <v-btn flat color="purple">Explore</v-btn>
+            <v-btn :href='card.link' flat color="black">Explore</v-btn>
             <v-spacer></v-spacer>
             <v-btn icon @click.native="show = !show">
               <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>

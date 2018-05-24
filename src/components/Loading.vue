@@ -1,11 +1,9 @@
 <template>
-  <v-container>
     <v-layout>
       <v-flex>
         <v-progress-circular :size="300" :width="7" indeterminate color="purple"></v-progress-circular>
       </v-flex>
     </v-layout>
-  </v-container>
 </template>
 
 <script>

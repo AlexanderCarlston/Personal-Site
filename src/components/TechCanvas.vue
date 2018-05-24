@@ -16,4 +16,5 @@ export default {
 canvas {
   background-color: white;
 }
+
 </style>
