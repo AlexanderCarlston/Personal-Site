@@ -9,11 +9,10 @@ import router from './router'
 
 import anime from 'animejs'
 import colors from 'vuetify/es5/util/colors'
-
 Vue.use(Vuetify, {
   theme: {
-    primary: colors.black,
-    secondary: colors.shades.black,
+    primary: colors.shades.black,
+    secondary: colors.grey.darken4,
     accent: colors.indigo.base
   }
 })

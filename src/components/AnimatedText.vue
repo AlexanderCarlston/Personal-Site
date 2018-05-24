@@ -1,7 +1,7 @@
 <template>
   <main id="App" class="bg-black">
     <section class ="flex items-center justify-center fill-height">
-      <h3 v-html="loadingText" ref="headline" v-cloak class="anim fw-400 absolute"></h3>
+      <h3 v-html="loadingText" ref="headline" v-cloak class="anim fw-400 absolute title"></h3>
     </section>
   </main>
 </template>
@@ -14,12 +14,15 @@ export default {
   data: () => ({
     texts: [
       'Computer Nerd',
-      'Fueling mooncar',
-      'Dusting off telescopes',
-      'Looking into space',
-      'Adjusting warp drive',
-      'Mining comets',
-      'Polishing visor'
+      'Javascript Guy',
+      'Vue Guy',
+      'Looking for job',
+      'Game Nerd',
+      'Learning',
+      'The man',
+      'Watching',
+      'Grinding',
+      'hi!'
     ],
     loadingText: 'Full Stack Web Developer'
   }),
@@ -39,10 +42,10 @@ export default {
         resolve()
       })
     },
-    animateLetters (container = null, targets = '.anim .str__item', delay = 100, duration = 120) {
+    animateLetters (container = null, targets = '.anim .str__item', delay = 130, duration = 120) {
       const vm = this
 
-      container.style = 'opacity:0;'
+      container.style = 'opacity:0; width: 50%'
 
       return new Promise ((resolve, reject) => {
         const anim = anime.timeline().add([{
@@ -94,23 +97,32 @@ export default {
 
 <style scoped>
 main {
-  height: 100%;
+  height: 54px;
   font-family: 'Space Mono', monospace, sans-serif;
   font-weight: 400;
 }
 
-.fw-400 { font-weight: 400; }
+.fw-400 {
+  font-weight: 500;
+}
 
-.bg-black { background-color: #1b1b1b; }
-.white { color: white; }
+.bg-black {
+  background-color: #1b1b1b;
+}
 
-.inline-block { display: inline-block; }
+.inline-block {
+  display: inline-block;
+}
 
-.invisible { opacity: 0; }
+.invisible {
+  opacity: 0;
+}
 
 .str__item {
   min-width: 10px;
 }
 
-.fill-height { height: 100%; }
+.fill-height {
+  height: 100%;
+}
 </style>

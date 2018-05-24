@@ -38,7 +38,7 @@
             v-for="(tech, i) in technology"
             :key="i"
             @click="changeCurrentTech"
-            :to='{name: "CurrentTech"}'
+            :to='{name: "Loading"}'
           >
             <v-list-tile-title v-text="tech.name"></v-list-tile-title>
             <v-list-tile-action>
@@ -82,15 +82,39 @@
 export default {
   name: 'App',
   methods: {
-    changeCurrentTech() {
-      this.CurrentTechName = ""
-      var CurrentTechName = event.target.innerText
-      this.CurrentTechName = CurrentTechName
-      this.CurrentTechObject = this._data.technology.filter(tech => tech.name === this.CurrentTechName)[0]
-      this.drawer = false
-    },
     hideDrawer() {
       this.drawer = false
+      return Promise.resolve(this)
+    },
+    changeText() {
+      var CurrentTechName = event.target.innerText.trim()
+      this.CurrentTechName = CurrentTechName
+      return Promise.resolve(this)
+    },
+    changeTechObject(){
+      let matchedNav = this.technology.filter(tech => tech.name === this.CurrentTechName)[0]
+      //Error I had when using event.target
+      if (matchedNav) {
+        this.CurrentTechObject = matchedNav
+      } else {
+        console.warn('WTF?!?!', matchedNav, 'this.technology.length=', this.technology.length, 'this.CurrentTechName=', this.CurrentTechName)
+      }
+      console.log('this.CurrentTechObject after', this.CurrentTechName, this.CurrentTechObject);
+      return Promise.resolve(this)
+    },
+    changeTechRoute(){
+      this.$router.push('CurrentTech')
+      return Promise.resolve(this)
+    },
+    changeCurrentTech() {
+      return Promise.resolve()
+        .then(this.changeText)
+        .then(this.changeTechObject)
+        .then(this.hideDrawer)
+        .then(this.changeTechRoute)
+        .then(response => {
+          console.log('done', response)
+        })
     }
   },
   data: () => ({

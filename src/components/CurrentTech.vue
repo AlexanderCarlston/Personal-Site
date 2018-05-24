@@ -6,7 +6,7 @@
       </v-flex>
       <v-flex xs12 sm5 md5>
         <v-card dark color="green">
-          <v-card-text>{{CurrentTechObject.name}}</v-card-text>
+          <v-card-text>{{CurrentTechObject && CurrentTechObject.name}}</v-card-text>
         </v-card>
       </v-flex>
     </v-layout>

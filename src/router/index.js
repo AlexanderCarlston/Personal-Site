@@ -5,6 +5,7 @@ import AboutMe from '@/components/AboutMe.vue'
 import CurrentTech from '@/components/CurrentTech.vue'
 import MyWork from '@/components/MyWork.vue'
 import ContactMe from '@/components/ContactMe.vue'
+import Loading from '@/components/Loading.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -33,6 +34,11 @@ export default new Router({
     path: '/ContactMe',
     name: 'ContactMe',
     component: ContactMe
+  },
+  {
+    path: '/Loading',
+    name: 'Loading',
+    component: Loading
   }
 ]
 })
