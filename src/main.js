@@ -11,8 +11,8 @@ import anime from 'animejs'
 import colors from 'vuetify/es5/util/colors'
 Vue.use(Vuetify, {
   theme: {
-    primary: colors.shades.black,
-    secondary: colors.grey.darken4,
+    primary: '#1B1B1B',
+    secondary: '#303030',
     accent: colors.indigo.base
   }
 })

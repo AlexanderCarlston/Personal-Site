@@ -6,7 +6,7 @@
     </v-flex>
   </v-layout>
   <v-parallax src="../static/fishthingy.jpg"></v-parallax>
-  <v-jumbotron color="secondary" dark height="100px">
+  <v-jumbotron color="primary" dark height="100px">
    <v-container fill-height>
      <v-layout align-center>
        <v-flex>
@@ -22,7 +22,7 @@
          <span>https://github.com/StephenTalking</span>
          </v-flex>
          <v-flex>
-         <span>Linkedin: https://www.linkedin.com/feed/</span>
+         <span>Linkedin: https://www.linkedin.com/in/alexander-carlston/</span>
          </v-flex>
      </v-layout>
    </v-container>

@@ -24,7 +24,8 @@ export default {
   components: {
     Name,
     TechCanvas
-  }
+  },
+  props: ["loadTechnology"]
 }
 
 

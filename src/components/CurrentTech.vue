@@ -2,11 +2,10 @@
   <v-container>
     <v-layout row wrap justify-center>
       <v-flex xs12>
-        <v-card dark color="secondary">
+        <v-card dark color="primary">
           <v-card-text class="title">{{CurrentTechObject.name}} - {{CurrentTechObject.description}}</v-card-text>
         </v-card>
       </v-flex>
-      <TechCanvas ></TechCanvas>
     </v-layout>
     <v-layout row>
       <v-flex v-for="card in CurrentTechObject.card" :key="card.name" xs4>
@@ -19,13 +18,9 @@
           </v-card-title>
           <v-card-actions>
             <v-btn :href='card.link' flat color="black">Explore</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn icon @click.native="show = !show">
-              <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
-            </v-btn>
           </v-card-actions>
           <v-slide-y-transition>
-            <v-card-text v-show="show">
+            <v-card-text>
               {{card.description}}
             </v-card-text>
           </v-slide-y-transition>
@@ -44,7 +39,7 @@ export default {
       TechCanvas
     },
     data: () => ({
-  show: false
+  show: true
 })
 }
 </script>

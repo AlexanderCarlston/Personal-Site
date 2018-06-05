@@ -68,10 +68,12 @@
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title>Learn More</v-toolbar-title>
     </v-toolbar>
-    <v-content>
+    <v-content class="">
+      <canvas id="backgroundCanvas"></canvas>
+      <canvas id="clickCanvas"></canvas>
       <v-container>
         <v-layout>
-          <router-view :CurrentTechObject="CurrentTechObject"></router-view>
+          <router-view :loadTechnology="technology" :CurrentTechObject="CurrentTechObject"></router-view>
         </v-layout>
       </v-container>
     </v-content>
@@ -93,13 +95,11 @@ export default {
     },
     changeTechObject(){
       let matchedNav = this.technology.filter(tech => tech.name === this.CurrentTechName)[0]
-      //Error I had when using event.target
       if (matchedNav) {
         this.CurrentTechObject = matchedNav
       } else {
         console.warn('WTF?!?!', matchedNav, 'this.technology.length=', this.technology.length, 'this.CurrentTechName=', this.CurrentTechName)
       }
-      console.log('this.CurrentTechObject after', this.CurrentTechName, this.CurrentTechObject);
       return Promise.resolve(this)
     },
     changeTechRoute(){
@@ -112,13 +112,7 @@ export default {
         .then(this.changeTechObject)
         .then(this.hideDrawer)
         .then(this.changeTechRoute)
-        .then(response => {
-          console.log('done', response)
-        })
     },
-    animateTechnology() {
-      
-    }
   },
   mounted(){
     fetch("../static/technology.json")
@@ -135,5 +129,11 @@ export default {
 </script>
 
 <style>
-
+.bg-black { background-color: #1b1b1b; }
+#backgroundCanvas, #clickCanvas {
+  height: 90vh;
+  width: 100vw;
+  z-index: -1;
+  position: absolute;
+}
 </style>

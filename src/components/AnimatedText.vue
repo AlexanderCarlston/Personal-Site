@@ -19,10 +19,14 @@ export default {
       'Looking for job',
       'Game Nerd',
       'Learning',
-      'The man',
+      'Missing a semicolon',
       'Watching',
       'Grinding',
-      'hi!'
+      'Hi!',
+      'Tabs > spaces',
+      'Learning Angular',
+      'Learning React',
+      'Learning AWS'
     ],
     loadingText: 'Full Stack Web Developer'
   }),
