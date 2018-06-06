@@ -10,9 +10,7 @@
         </v-layout>
       </v-container>
     </v-jumbotron>
-    <v-layout justify-center>
-      <TechCanvas></TechCanvas>
-    </v-layout>
+    <v-btn @click="animateFireworks" block color="primary" dark>Animate</v-btn>
   </v-container>
 </template>
 
@@ -25,7 +23,7 @@ export default {
     Name,
     TechCanvas
   },
-  props: ["loadTechnology"]
+  props: ["loadTechnology", "animateFireworks"]
 }
 
 
