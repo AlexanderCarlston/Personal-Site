@@ -125,6 +125,11 @@ export default {
       this.fireworks = true
       Vue.nextTick(function () {
       var canvasEl = document.querySelector('.fireworksCanvas')
+      canvasEl.width = window.innerWidth * 2;
+      canvasEl.height = window.innerHeight * 2;
+      canvasEl.style.width = window.innerWidth + 'px';
+      canvasEl.style.height = window.innerHeight + 'px';
+      canvasEl.getContext('2d').scale(2, 2);
       var ctx = canvasEl.getContext('2d')
       anime({
       duration: Infinity,
