@@ -14,13 +14,19 @@
 }, {
   "name" : "CSS",
   "image" : "devicon-css3-plain",
-  "description": "This is language is a struggle. Flexbox and grid are extremely helpful and CSS frameworks make responsivity easier, learning their grid system is key.",
+  "description": "This language is a struggle. Flexbox and grid are extremely helpful and CSS frameworks make responsivity easier, learning their grid system is key.",
   "card": [
     {
       "title" : "You Need This.",
       "subTitle" : "CSS Transitions",
       "link" : "https://www.w3schools.com/css/css3_transitions.asp",
       "description" : "This is one of those things that you just need to learn. While you can never completely master CSS (people on codepen aren't human) being able to utilize this is huge for your application"
+    },
+    {
+      "title" : "CSS Frameworks",
+      "subTitle": "Love them and hate them",
+      "link": "https://getbootstrap.com/docs/4.1/getting-started/introduction/",
+      "description": "Bootstrap was the first framework that I got in to just because I heard the name a lot. At first the framework seemed magical, but I later realized that these frameworks have their downfall and learning vanilla CSS was a big win for me."
     }
   ]
 }, {
@@ -33,6 +39,12 @@
       "subTitle" : "MDN to the rescue!",
       "link" : "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions",
       "description" : "The thing I like most about JavaScript is that the best way to learn is to build with it. If you run in to a comming thing you need to do there's usually a built in method for that (ES6 is especially useful)."
+    },
+    {
+      "title" : "You-Dont-Know-JS",
+      "subTitle": "More understanding",
+      "link": "https://github.com/getify/You-Dont-Know-JS",
+      "description": "I'm currently going through the series and think it's a good resource for anyone looking to learn more about JavaScript. Understanding what is actually going on in JavaScript is weird, but ultimately helps your understanding."
     }
   ]
 }, {
@@ -45,6 +57,12 @@
       "subTitle" : "Their docs are what got me",
       "link" : "https://vuejs.org/",
       "description" : "After learning dom manipulation going in to a framework that does the work for you, but also requires you to use javascript logic is a nice feeling. Vue with webpack is very modular and has most of what you need to create a SPA (if not they have something for it you can add)."
+    },
+    {
+      "title" : "Vuex",
+      "subTitle": "Even if you don't need it, it's tempting to use.",
+      "link": "https://github.com/vuejs/vuex",
+      "description": "Vuex makes it possible to have centralized state mangement. I actually had a unique opportunity to look at Vuex in actions and was able to soak in the modularity required and how cool this actually is."
     }
   ]
 }, {
@@ -67,8 +85,86 @@
     {
       "title" : "Another framework?",
       "subTitle" : "Meant for Node.js",
-      "link" : "",
+      "link" : "https://expressjs.com/",
       "description" : "This 'module framework' lets you listen for input/connect requests from clients. This works extremely well with Knex's queries."
+    }
+  ]
+},
+{
+  "name" : "Git",
+  "image" : "devicon-git-plain",
+  "description": "I use git for version control, it's one of the things that you just need.",
+  "card": [
+    {
+      "title" : "Freen and Open source",
+      "subTitle" : "Saves your life",
+      "link" : "https://git-scm.com/",
+      "description" : "This is probably one of the things that I've had the most experience with."
+    }
+  ]
+},
+{
+  "name" : "Github",
+  "image" : "devicon-github-plain",
+  "description": "What I use (and mostly everybody else)",
+  "card": [
+    {
+      "title" : "My account",
+      "subTitle" : "Not overwhelming",
+      "link" : "https://github.com/AlexanderCarlston",
+      "description" : "Most of the work that I've done has been in private repositorys, but I'm still looking to contribute to open source projects."
+    }
+  ]
+},
+{
+  "name" : "Heroku",
+  "image" : "devicon-heroku-original",
+  "description": "What I use to host.",
+  "card": [
+    {
+      "title" : "What I use.",
+      "subTitle" : "heroku logs --tail",
+      "link" : "https://www.heroku.com/",
+      "description" : "The logs are actually good, and it makes it easy to debug."
+    }
+  ]
+},
+{
+  "name" : "Postgresql",
+  "image" : "devicon-postgresql-plain",
+  "description": "The world's most advanced open source database.",
+  "card": [
+    {
+      "title" : "Needs no introduction",
+      "subTitle" : "Written in C",
+      "link" : "https://www.postgresql.org/",
+      "description" : "Works well with the tools I use."
+    }
+  ]
+},
+{
+  "name" : "Chrome",
+  "image" : "devicon-chrome-plain",
+  "description": "Still good",
+  "card": [
+    {
+      "title" : "The dev tools are solid",
+      "subTitle" : "People really like Mozilla.",
+      "link" : "https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd?hl=en",
+      "description" : ""
+    }
+  ]
+},
+{
+  "name" : "Mocha",
+  "image" : "devicon-mocha-plain",
+  "description": "I use mocha chai and supertest",
+  "card": [
+    {
+      "title" : "Great Resource",
+      "subTitle" : "This was one of my old instructors and he has a really good video on this.",
+      "link" : "https://www.youtube.com/watch?v=68KLyXWQ5CU",
+      "description" : "Makes it easy to test and make sure everything is working."
     }
   ]
 }

@@ -1,16 +1,18 @@
 <template>
-  <main id="App" class="bg-black">
-    <section class ="flex items-center justify-center fill-height">
+    <v-card color="primary" height="80px" class="unselectable">
       <h3 v-html="loadingText" ref="headline" v-cloak class="anim fw-400 absolute title"></h3>
-    </section>
-  </main>
+    </v-card>
 </template>
 
 <script>
 const charming = require('charming')
 const anime = require('animejs')
+
 export default {
   name: "AnimatedText",
+    mounted () {
+    this.splitHTMLAndAnimateChildNodes(this.$refs.headline, '.anim .str__item')
+  },
   data: () => ({
     texts: [
       'Computer Nerd',
@@ -20,8 +22,8 @@ export default {
       'Game Nerd',
       'Learning',
       'Missing a semicolon',
-      'Watching',
-      'Grinding',
+      'Learning OAuth',
+      'Coding',
       'Hi!',
       'Tabs > spaces',
       'Learning Angular',
@@ -93,26 +95,28 @@ export default {
       .then(() => this.animateLetters(el, targets))
     }
   },
-  mounted () {
-    this.splitHTMLAndAnimateChildNodes(this.$refs.headline, '.anim .str__item')
-  }
 }
 </script>
 
 <style scoped>
-main {
+h3, span {
+  font-size: 8vh!important;
+  background-color: #1b1b1b!important;
+}
+h3 > * {
+  background-color: #1b1b1b!important;
+  /* position: absolute!important; */
+}
+/* main {
   height: 54px;
   font-family: 'Space Mono', monospace, sans-serif;
   font-weight: 400;
-}
-
+  z-index: -1;
+} */
 .fw-400 {
   font-weight: 500;
 }
 
-.bg-black {
-  background-color: #1b1b1b;
-}
 
 .inline-block {
   display: inline-block;
@@ -129,4 +133,5 @@ main {
 .fill-height {
   height: 100%;
 }
+
 </style>

@@ -1,27 +1,23 @@
 <template>
   <v-container grid-list-xl>
+    <v-layout column>
     <Name></Name>
-    <v-jumbotron color="secondary" dark height="200px">
-      <v-container fill-height>
-        <v-layout align-center>
-          <v-flex text-xs-center>
-            <h3 class="display-3">My name is Alexander Carlston and I am a full stack web developer.</h3>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-jumbotron>
     <v-btn @click="animateFireworks" block color="primary" dark>Animate</v-btn>
+    </v-layout>
   </v-container>
 </template>
 
 <script>
 import Name from '@/components/Name.vue'
 import TechCanvas from '@/components/TechCanvas.vue'
+import AnimatedText from '@/components/AnimatedText.vue'
+
 export default {
   name: 'LandingPage',
   components: {
     Name,
-    TechCanvas
+    TechCanvas,
+    AnimatedText
   },
   props: ["loadTechnology", "animateFireworks"]
 }

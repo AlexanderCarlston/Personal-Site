@@ -7,7 +7,7 @@
         </v-card>
       </v-flex>
     </v-layout>
-    <v-layout row>
+    <v-layout class="row wrap">
       <v-flex v-for="card in CurrentTechObject.card" :key="card.name" xs4>
         <v-card >
           <v-card-title primary-title>
@@ -31,12 +31,14 @@
 </template>
 
 <script>
-import TechCanvas from '@/components/TechCanvas.vue'
+
 export default {
   name: "CurrentTech",
-  props: ["CurrentTechObject"],
+  mounted(){
+  },
+  props: ["CurrentTechObject", "fireworks", "stars"],
   components: {
-      TechCanvas
+      
     },
     data: () => ({
   show: true
@@ -45,4 +47,5 @@ export default {
 </script>
 
 <style>
+
 </style>

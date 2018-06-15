@@ -1,18 +1,9 @@
 <template>
-  <v-layout>
-    <v-flex style='width: 50%;'>
-      <v-card dark>
-        <v-card-text class="title bg-black">
-          <h3>Alexander Carlston</h3>
-        </v-card-text>
-      </v-card>
-    </v-flex>
-    <v-flex style='width: 50%;'>
-      <v-card dark color="primary">
-        <AnimatedText/>
-      </v-card>
-    </v-flex>
+  <v-layout column >
+    <h3 class="unselectable" >Alexander Carlston</h3>
+      <AnimatedText class="bg-black"/>
   </v-layout>
+  
 </template>
 
 <script>
@@ -26,6 +17,11 @@ export default {
 
 </script>
 
-<style scoped>
-
+<style >
+h3 {
+  font-size: 12vh;
+}
+AnimatedText {
+  height: 200px;
+}
 </style>

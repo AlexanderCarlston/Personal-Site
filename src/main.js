@@ -13,7 +13,8 @@ Vue.use(Vuetify, {
   theme: {
     primary: '#1B1B1B',
     secondary: '#303030',
-    accent: colors.indigo.base
+    accent: colors.indigo.base,
+    transparent: colors.shades.transparent
   }
 })
 

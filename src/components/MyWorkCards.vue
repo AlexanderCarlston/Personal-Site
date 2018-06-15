@@ -5,6 +5,7 @@
         :src='project.image'
         height="200px"
       >
+      <img :src='project.image'>
       </v-card-media>
       <v-card-title primary-title>
         <div>
@@ -13,7 +14,7 @@
         </div>
       </v-card-title>
       <v-card-actions>
-        <v-btn :href="project.linkOne"disabled flat>Open</v-btn>
+        <v-btn :href="project.linkOne" flat>Open</v-btn>
         <v-btn :href="project.linkTwo" flat color="purple">Explore</v-btn>
         <v-spacer></v-spacer>
         <v-btn icon @click.native="show = !show">
@@ -35,7 +36,7 @@ export default {
   props: ["project"],
   data(){
     return {
-      show:false
+      show: false
     }
   }
 }

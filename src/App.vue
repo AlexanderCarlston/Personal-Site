@@ -7,7 +7,7 @@
       app
     >
       <v-list dense>
-        <v-list-tile @click="hideDrawer" :to='{name: "LandingPage"}'>
+        <v-list-tile @click="hideDrawer(false)" :to='{name: "LandingPage"}'>
           <v-list-tile-action>
             <v-icon>home</v-icon>
           </v-list-tile-action>
@@ -15,7 +15,7 @@
             <v-list-tile-title>Home</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile @click="hideDrawer" :to='{name: "AboutMe"}' >
+        <v-list-tile @click="hideDrawer(false)" :to='{name: "AboutMe"}' >
           <v-list-tile-action>
             <v-icon>face</v-icon>
           </v-list-tile-action>
@@ -46,7 +46,7 @@
             </v-list-tile-action>
           </v-list-tile>
         </v-list-group>
-        <v-list-tile :to='{name: "MyWork"}' @click="hideDrawer">
+        <v-list-tile :to='{name: "MyWork"}' @click="hideDrawer(false)">
           <v-list-tile-action>
             <v-icon>work</v-icon>
           </v-list-tile-action>
@@ -54,7 +54,7 @@
             <v-list-tile-title>My Work</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile :to='{name: "ContactMe"}' @click="hideDrawer">
+        <v-list-tile :to='{name: "ContactMe"}' @click="hideDrawer(false)">
           <v-list-tile-action>
             <v-icon>alternate_email</v-icon>
           </v-list-tile-action>
@@ -66,15 +66,13 @@
     </v-navigation-drawer>
     <v-toolbar app fixed clipped-left>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>Learn More</v-toolbar-title>
+      <v-toolbar-title class="unselectable" >Learn More</v-toolbar-title>
     </v-toolbar>
-    <v-content>
-      <canvas id="backgroundCanvas"></canvas>
-      <canvas @click="fireworkCoords" v-if="fireworks" id="clickCanvas" class="fireworksCanvas"></canvas>
+    <v-content class="bg-black">
+      <canvas id="backgroundCanvas" class="stars" v-if="stars" ></canvas>
+      <canvas v-if="fireworks" id="clickCanvas" class="fireworksCanvas" @click="fireworkCoords"></canvas>
       <v-container>
-        <v-layout>
-          <router-view :animateFireworks="animateFireworks" :loadTechnology="technology" :CurrentTechObject="CurrentTechObject"></router-view>
-        </v-layout>
+          <router-view :fireworks="fireworks" :stars="stars" :animateFireworks="animateFireworks" :loadTechnology="technology" :CurrentTechObject="CurrentTechObject"></router-view>
       </v-container>
     </v-content>
   </v-app>
@@ -94,6 +92,7 @@ export default {
   },
     data: () => ({
     fireworks: false,
+    stars: false,
     drawer: false,
     technology: [],
     CurrentTechName: "",
@@ -107,29 +106,27 @@ export default {
     fireworkCoords(event) {
        this.updateCoords(event)
     },
-    // animate() {
-    //   //Setting Variables
-    //   console.log("this is working")
-    //   var canvasEl = document.querySelector('.fireworksCanvas')
-    //   console.log(canvasEl) 
-    //   var ctx = canvasEl.getContext('2d')
-    //   anime({
-    //   duration: Infinity,
-    //   update: function() {
-    //     //Sets all pixels in the rectangle defined by starting point (x, y) and size (width, height) to transparent black, erasing any previously drawn content.
-    //     ctx.clearRect(0, 0, canvasEl.width, canvasEl.height)
-    //   }
-    // })
-    // },
-      animateFireworks(){
+    animateFireworks(){
       this.fireworks = true
-      Vue.nextTick(function () {
+      this.stars = true
+      Vue.nextTick(() => {
+      var contentWrap = document.querySelector('.content--wrap')
       var canvasEl = document.querySelector('.fireworksCanvas')
-      canvasEl.width = window.innerWidth * 2;
-      canvasEl.height = window.innerHeight * 2;
-      canvasEl.style.width = window.innerWidth + 'px';
-      canvasEl.style.height = window.innerHeight + 'px';
-      canvasEl.getContext('2d').scale(2, 2);
+      var starCanvasEl = document.querySelector('.stars')
+      var clientHeight = contentWrap.clientHeight
+      var clientWidth = contentWrap.clientWidth
+      this.starCoords(clientWidth, clientHeight)
+      starCanvasEl.width = window.innerWidth * 2
+      starCanvasEl.height = window.innerHeight * 2
+      starCanvasEl.style.width = clientWidth + 'px'
+      starCanvasEl.style.height = clientHeight + 'px'
+      starCanvasEl.getContext('2d').scale(2, 2)
+
+      canvasEl.width = window.innerWidth * 2
+      canvasEl.height = window.innerHeight * 2
+      canvasEl.style.width = clientWidth + 'px'
+      canvasEl.style.height = clientHeight + 'px'
+      canvasEl.getContext('2d').scale(2, 2)
       var ctx = canvasEl.getContext('2d')
       anime({
       duration: Infinity,
@@ -138,12 +135,13 @@ export default {
         ctx.clearRect(0, 0, canvasEl.width, canvasEl.height)
       }
     })
-})
+      })
     },
     updateCoords(event) {
-      console.log(event.layerX, event.layerX)
+      var canvasHeight = document.querySelector('.fireworksCanvas').height
       this.layerX = event.layerX 
-      this.layerY = event.layerY
+      this.layerY = event.layerY + ((event.layerY/canvasHeight) * (canvasHeight/13) ) 
+      //ClientY does the exact oppisite
       this.animateParticules(this.layerX , this.layerY)
 },
     setParticuleDirection(particle) {
@@ -228,7 +226,127 @@ animateParticules(x, y) {
     offset: 0
 })
 },
-    hideDrawer() {
+animate(x, y) {
+  var circle = this.createCircle(x , y )
+  var particules = []
+  for (var i = 0; i < this.numberOfParticules; i++) {
+    particules.push(this.createParticule(x, y))
+  }
+  anime.timeline().add({
+    targets: particules,
+    x: function(particle) { return particle.endPos.x },
+    y: function(particle) { return particle.endPos.y },
+    radius: 0.1,
+    duration: anime.random(1200, 1800),
+    easing: 'easeOutExpo',
+    update: this.renderParticule
+  })
+    .add({
+    targets: circle,
+    radius: anime.random(80, 160),
+    lineWidth: 0,
+    alpha: {
+      value: 0,
+      easing: 'linear',
+      duration: anime.random(600, 800),
+    },
+    duration: anime.random(1200, 1800),
+    easing: 'easeOutExpo',
+    update: this.renderParticule,
+    offset: 0
+})
+},
+//Star animations
+starCoords(clientWidth, clientHeight){
+  for (let i = 0; i <20; i++) {
+    window.setInterval(this.animateStarParticules(
+      anime.random(50, clientWidth-50), 
+      anime.random(50, clientHeight-50)
+    ), 2000)
+  }
+  },
+animateStarParticules(x, y) {
+  var circle = this.createStarCircle(x , y )
+  var particules = []
+  for (var i = 0; i < this.numberOfParticules; i++) {
+    particules.push(this.createStarParticule(x, y))
+  }
+  anime.timeline().add({
+    targets: particules,
+    x: function(particle) { return particle.endPos.x },
+    y: function(particle) { return particle.endPos.y },
+    radius: 0.1,
+    delay: 1000,
+    duration: anime.random(1200, 1800),
+    easing: 'easeOutExpo',
+    update: this.renderParticule
+  })
+//     .add({
+//     delay: 1000,
+//     targets: circle,
+//     radius: anime.random(80, 160),
+//     lineWidth: 0,
+//     alpha: {
+//       value: 0,
+//       easing: 'linear',
+//       duration: anime.random(600, 800),
+//     },
+//     duration: anime.random(1200, 1800),
+//     easing: 'easeOutExpo',
+//     update: this.renderParticule,
+//     offset: 0
+// })
+},
+createStarCircle(x,y) {
+var particle = {}
+particle.x = x
+particle.y = y
+particle.color = '#FFF'
+particle.radius = 0.1
+particle.alpha = .5
+particle.lineWidth = 6
+particle.draw = function() {
+  var canvasEl = document.querySelector('.stars')
+  var ctx = canvasEl.getContext('2d')
+  ctx.globalAlpha = particle.alpha
+  ctx.beginPath()
+  ctx.arc(particle.x, particle.y, particle.radius, 0, 2 * Math.PI, true)
+  ctx.lineWidth = particle.lineWidth
+  ctx.strokeStyle = particle.color
+  ctx.stroke()
+  ctx.globalAlpha = 1
+}
+return particle
+},
+  createStarParticule(x,y) {
+    var particle = {}
+    particle.x = x
+    particle.y = y
+    particle.color = this.colors[anime.random(0, this.colors.length - 1)]
+    particle.radius = anime.random(16, 32)
+    particle.endPos = this.setParticuleDirection(particle)
+    var canvasEl = document.querySelector('.stars')
+    var ctx = canvasEl.getContext('2d')
+    particle.draw = function() {
+      ctx.beginPath()
+      ctx.arc(particle.x, particle.y, particle.radius, 0, 2 * Math.PI, true)
+      ctx.fillStyle = particle.color
+      ctx.fill()
+}
+return particle
+},
+
+
+
+
+  //Drawer
+    hideDrawer(boolean) {
+      if (boolean) {
+        this.animateFireworks
+        this.fireworks = true
+      } else {
+        this.fireworks = false
+      }
       this.drawer = false
       return Promise.resolve(this)
     },
@@ -250,11 +368,17 @@ animateParticules(x, y) {
       this.$router.push('CurrentTech')
       return Promise.resolve(this)
     },
+    disableFireworks(){
+      this.fireworks = false
+      this.stars = false
+      return Promise.resolve(this)
+    },
     changeCurrentTech() {
       return Promise.resolve()
+        .then(this.disableFireworks)
         .then(this.changeText)
         .then(this.changeTechObject)
-        .then(this.hideDrawer)
+        .then(this.hideDrawer(false))
         .then(this.changeTechRoute)
     }
   }
@@ -263,16 +387,46 @@ animateParticules(x, y) {
 </script>
 
 <style>
+.content--wrap {
+  text-align: left!important;
+}
+h3 {
+  z-index: 0;
+}
+.ltr1, .ltr4, .ltr8, .ltr11, .ltr15, .ltr16  {
+  color: #4A148C;
+}
+.ltr2, .ltr5, .ltr7, .ltr12, .ltr17 {
+  color: #9C27B0;
+}
+.ltr3, .ltr9, .ltr13, .ltr18 {
+  color: #EC407A;
+}
+.ltr6, .ltr10, .ltr14, .ltr19 {
+  color: #1A237E;
+}
+.unselectable {
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
 #backgroundCanvas, #clickCanvas {
-  height: 90vh;
-  width: 100vw;
+  height: 90vh!important;
+  width: 100vw!important;
   position: absolute;
 }
 #backgroundCanvas {
-z-index: -1;
+z-index: 0;
 }
-#clickCanvas {
-z-index: 1;
+v-card, #clickCanvas {
+    z-index: 1;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }
 .bg-black { background-color: #1b1b1b; }
 .color-01 { color: #ff1461; } /* Red */

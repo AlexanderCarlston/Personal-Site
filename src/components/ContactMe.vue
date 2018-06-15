@@ -5,7 +5,7 @@
       <Name></Name>
     </v-flex>
   </v-layout>
-  <v-parallax src="../static/fishthingy.jpg"></v-parallax>
+  <v-parallax src="../static/me.jpg"></v-parallax>
   <v-jumbotron color="primary" dark height="100px">
    <v-container fill-height>
      <v-layout align-center>
