@@ -281,21 +281,6 @@ animateStarParticules(x, y) {
     easing: 'easeOutExpo',
     update: this.renderParticule
   })
-//     .add({
-//     delay: 1000,
-//     targets: circle,
-//     radius: anime.random(80, 160),
-//     lineWidth: 0,
-//     alpha: {
-//       value: 0,
-//       easing: 'linear',
-//       duration: anime.random(600, 800),
-//     },
-//     duration: anime.random(1200, 1800),
-//     easing: 'easeOutExpo',
-//     update: this.renderParticule,
-//     offset: 0
-// })
 },
 createStarCircle(x,y) {
 var particle = {}

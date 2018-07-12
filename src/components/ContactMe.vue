@@ -19,7 +19,7 @@
          </v-flex>
          <v-flex>
          <i class="devicon-github-plain title"></i>
-         <span>https://github.com/StephenTalking</span>
+         <span>https://github.com/alexandercarlston</span>
          </v-flex>
          <v-flex>
          <span>Linkedin: https://www.linkedin.com/in/alexander-carlston/</span>

@@ -2,6 +2,14 @@
 
 > A Vue.js project
 
+## Built With:
+* [Vue.js](https://vuejs.org/) - Front End Framework
+* [Vuetify](https://vuetifyjs.com/en/) - Fast design prototyping (might change to vanilla)
+* [Vue Router](https://router.vuejs.org/) - Navigation
+
+## Uses:
+* [Server]() - PostgreSQL server
+
 ## Build Setup
 
 ``` bash
@@ -17,5 +25,3 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
