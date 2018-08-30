@@ -1,6 +1,6 @@
 # personal-project
 
-> A Vue.js project
+> I worked on this website a long time ago, so unfortunately this website isn't mobile friendly. However, this was my first time implementing a feature in to my code, so I am proud of that.
 
 ## Built With:
 * [Vue.js](https://vuejs.org/) - Front End Framework
