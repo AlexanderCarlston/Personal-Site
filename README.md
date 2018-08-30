@@ -5,7 +5,7 @@
 ## Walk through
 * [Animated text](https://github.com/AlexanderCarlston/Personal-Site/blob/master/src/components/AnimatedText.vue)
 
-![textPicture](https://imgur.com/fJ3qtGc.png)
+![textPicture](https://media.giphy.com/media/1ZnG301DuY9DSU1TKg/giphy.gif)
 * [Animated bubbles](https://github.com/AlexanderCarlston/Personal-Site/blob/master/src/App.vue)
 
 ## Built With:
