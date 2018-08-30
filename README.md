@@ -229,46 +229,19 @@ This function is then used on each click, and uses where it was clicked to anima
         });
     }
 ```
-
-
-
+## What I learned:
+I worked on this project about a three months ago, but I still remember learning a ton. I feel like I've grown a lot since then (which is why my first instinct is to hide it), but there are still some things I should remember
+* Canvas is hard
+* Planning is huge, should've wireframed.
+* No matter how dauting the task, I can do it.
+* Fancy animations aren't what make good looking websites.
+* Sometimes simple is waaaaaaay better!
+* Projects are always way harder than you think they'll be!
 
 ## Built With:
 * [Vue.js](https://vuejs.org/) - Front End Framework
 * [Vuetify](https://vuetifyjs.com/en/) - Fast design prototyping (might change to vanilla)
 * [Vue Router](https://router.vuejs.org/) - Navigation
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Uses:
-* [Server]() - PostgreSQL server
-
-
-
-
-
-
-
-
-
-
-
 
 
 ## Build Setup
