@@ -83,26 +83,6 @@ This function is where the bulk of the animation happens, naming is extremely im
       })
     }
 ```
-``` javascript
-```
-``` javascript
-```
-``` javascript
-```
-``` javascript
-```
-``` javascript
-```
-``` javascript
-```
-``` javascript
-```
-``` javascript
-```
-
-
-
-
 
 
 
