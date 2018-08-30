@@ -30,10 +30,16 @@ Simple function that sets the loading text using a promise
       })
     }
 ```
-
-
+Then I use the function splitHTMLStringIntoNodes which is passed down the element and an object.
 ``` javascript
+    splitHTMLStringIntoNodes (el, opt = { classPrefix: 'str__item inline-block ltr' }) {
+      return new Promise ((resolve, reject) => {
+        charming(el, opt)
+        resolve()
+      })
+    }
 ```
+This function is where the bulk of the animation happens, naming is extremely important so this function (to be simple) animates the letters.
 ``` javascript
 ```
 ``` javascript
