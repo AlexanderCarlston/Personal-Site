@@ -8,12 +8,18 @@
 ![textPicture](https://media.giphy.com/media/1ZnG301DuY9DSU1TKg/giphy.gif)
 
 First off I use a function called splitHTMLAndAnimateChildNodes, which does what it says.
-```
+``` javascript
     mounted () {
     this.splitHTMLAndAnimateChildNodes(this.$refs.headline, '.anim .str__item')
   }
 ```
-
+``` javascript
+    splitHTMLAndAnimateChildNodes (el, targets) {
+      this.setLoadingText()
+      .then(() => this.splitHTMLStringIntoNodes(el))
+      .then(() => this.animateLetters(el, targets))
+    }
+```
 
 * [Animated bubbles](https://github.com/AlexanderCarlston/Personal-Site/blob/master/src/App.vue)
 
