@@ -13,6 +13,7 @@ First off I use a function called splitHTMLAndAnimateChildNodes, which does what
     this.splitHTMLAndAnimateChildNodes(this.$refs.headline, '.anim .str__item')
   }
 ```
+Since mounted is the only user interaction, this function is where most of the things happen.
 ``` javascript
     splitHTMLAndAnimateChildNodes (el, targets) {
       this.setLoadingText()
@@ -20,6 +21,46 @@ First off I use a function called splitHTMLAndAnimateChildNodes, which does what
       .then(() => this.animateLetters(el, targets))
     }
 ```
+Simple function that sets the loading text using a promise
+``` javascript
+    setLoadingText () {
+      return new Promise ((resolve, reject) => {
+        this.loadingText = this.getRandomText()
+        resolve()
+      })
+    }
+```
+
+
+``` javascript
+```
+``` javascript
+```
+``` javascript
+```
+``` javascript
+```
+``` javascript
+```
+``` javascript
+```
+``` javascript
+```
+``` javascript
+```
+``` javascript
+```
+``` javascript
+```
+
+
+
+
+
+
+
+
+
 
 * [Animated bubbles](https://github.com/AlexanderCarlston/Personal-Site/blob/master/src/App.vue)
 
