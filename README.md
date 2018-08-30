@@ -6,7 +6,10 @@
 * [Animated text](https://github.com/AlexanderCarlston/Personal-Site/blob/master/src/components/AnimatedText.vue)
 
 ![textPicture](https://media.giphy.com/media/1ZnG301DuY9DSU1TKg/giphy.gif)
+
 * [Animated bubbles](https://github.com/AlexanderCarlston/Personal-Site/blob/master/src/App.vue)
+
+![BubblePicture](https://media.giphy.com/media/2t9uOJyJQHxL6URamL/giphy.gif)
 
 ## Built With:
 * [Vue.js](https://vuejs.org/) - Front End Framework
