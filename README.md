@@ -92,6 +92,7 @@ This function is where the bulk of the animation happens, naming is extremely im
 * [Animated bubbles](https://github.com/AlexanderCarlston/Personal-Site/blob/master/src/App.vue)
 
 ![BubblePicture](https://media.giphy.com/media/2t9uOJyJQHxL6URamL/giphy.gif)
+<br>
 This canvas is unclickable, and only exists when the animate button is pressed.
 ``` html
 <canvas id="backgroundCanvas" class="stars" v-if="stars" ></canvas>
@@ -134,6 +135,7 @@ This function actually caused me a lot of pain and struggle. I had an issue wher
 * [Animated bubbles burst](https://github.com/AlexanderCarlston/Personal-Site/blob/master/src/App.vue)
 
 ![BubbleBurst](https://media.giphy.com/media/dtiBVHJm5VxoL8R6Ir/giphy.gif)
+<br>
 This canvas is clickable, and also only exists when the animate button is clicked.
 ``` html
 <canvas id="clickCanvas" v-if="fireworks"  class="fireworksCanvas" @click="fireworkCoords"></canvas>
