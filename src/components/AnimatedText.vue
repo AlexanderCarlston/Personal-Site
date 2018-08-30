@@ -105,14 +105,8 @@ h3, span {
 }
 h3 > * {
   background-color: #1b1b1b!important;
-  /* position: absolute!important; */
 }
-/* main {
-  height: 54px;
-  font-family: 'Space Mono', monospace, sans-serif;
-  font-weight: 400;
-  z-index: -1;
-} */
+
 .fw-400 {
   font-weight: 500;
 }
