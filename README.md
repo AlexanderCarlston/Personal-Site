@@ -11,6 +11,10 @@
 
 ![BubblePicture](https://media.giphy.com/media/2t9uOJyJQHxL6URamL/giphy.gif)
 
+* [Animated bubbles burst](https://github.com/AlexanderCarlston/Personal-Site/blob/master/src/App.vue)
+
+![BubbleBurst](https://media.giphy.com/media/dtiBVHJm5VxoL8R6Ir/giphy.gif)
+
 ## Built With:
 * [Vue.js](https://vuejs.org/) - Front End Framework
 * [Vuetify](https://vuetifyjs.com/en/) - Fast design prototyping (might change to vanilla)
