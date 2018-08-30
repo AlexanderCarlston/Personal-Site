@@ -2,6 +2,10 @@
 
 > I worked on this website a long time ago, so unfortunately this website isn't mobile friendly. However, this was my first time implementing a feature in to my code, so I am proud of that.
 
+## Walk through
+* [Animated text](https://github.com/AlexanderCarlston/Personal-Site/blob/master/src/components/AnimatedText.vue)
+* [Animated bubbles](https://github.com/AlexanderCarlston/Personal-Site/blob/master/src/App.vue)
+
 ## Built With:
 * [Vue.js](https://vuejs.org/) - Front End Framework
 * [Vuetify](https://vuetifyjs.com/en/) - Fast design prototyping (might change to vanilla)
