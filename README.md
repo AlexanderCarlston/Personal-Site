@@ -41,6 +41,47 @@ Then I use the function splitHTMLStringIntoNodes which is passed down the elemen
 ```
 This function is where the bulk of the animation happens, naming is extremely important so this function (to be simple) animates the letters.
 ``` javascript
+    animateLetters (container = null, targets = '.anim .str__item', delay = 130, duration = 120) {
+      const vm = this
+
+      container.style = 'opacity:0; width: 50%'
+
+      return new Promise ((resolve, reject) => {
+        const anim = anime.timeline().add([{
+          targets: targets,
+          opacity: [0, 1],
+          rotate: [-25, 0],
+          scaleX: [.5,1],
+          translateY: ['0px','25px'],
+          delay (el, i, l) { return delay + (i * delay) },
+          duration (el, i, l) { return duration + (i / duration) },
+          autoplay: false,
+          easing: 'easeInOutQuint',
+          begin () { container.style = null }
+        }, {
+          targets: targets,
+          opacity: [1, 0],
+          rotate: [0, -25],
+          scaleX: [1,.5],
+          translateY: ['25px', '0px'],
+          delay (el, i, l) { return delay + (i * delay) },
+          duration (el, i, l) { return duration + (i / duration) },
+          autoplay: false,
+          begin () { container.style = null },
+          easing: 'easeInOutQuint',
+          offset: 2000,
+          complete () {
+            anim.pause()
+            container.innerText = vm.getRandomText()
+            vm.splitHTMLStringIntoNodes(container).then(() => vm.animateLetters(container, targets))
+          }
+        }])
+
+
+        anim.play()
+        resolve()
+      })
+    }
 ```
 ``` javascript
 ```
