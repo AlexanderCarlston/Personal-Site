@@ -79,18 +79,18 @@
 </template>
 
 <script>
-import anime from 'animejs'
-const jscomp = require('jscomp')
-import Vue from 'vue'
+import anime from "animejs";
+const jscomp = require("jscomp");
+import Vue from "vue";
 
 export default {
-  name: 'App',
-    mounted(){
+  name: "App",
+  mounted() {
     fetch("../static/technology.json")
-    .then(response => response.json())
-    .then(response => this.technology = response)
+      .then(response => response.json())
+      .then(response => (this.technology = response));
   },
-    data: () => ({
+  data: () => ({
     fireworks: false,
     stars: false,
     drawer: false,
@@ -100,263 +100,287 @@ export default {
     layerX: 0,
     layerY: 0,
     numberOfParticules: 30,
-    colors: ['#4A148C', '#9C27B0', '#EC407A', '#1A237E']
+    colors: ["#4A148C", "#9C27B0", "#EC407A", "#1A237E"]
   }),
   methods: {
     fireworkCoords(event) {
-       this.updateCoords(event)
+      this.updateCoords(event);
     },
-    animateFireworks(){
-      this.fireworks = true
-      this.stars = true
+    animateFireworks() {
+      this.fireworks = true;
+      this.stars = true;
       Vue.nextTick(() => {
-      var contentWrap = document.querySelector('.content--wrap')
-      var canvasEl = document.querySelector('.fireworksCanvas')
-      var starCanvasEl = document.querySelector('.stars')
-      var clientHeight = contentWrap.clientHeight
-      var clientWidth = contentWrap.clientWidth
-      this.starCoords(clientWidth, clientHeight)
-      starCanvasEl.width = window.innerWidth * 2
-      starCanvasEl.height = window.innerHeight * 2
-      starCanvasEl.style.width = clientWidth + 'px'
-      starCanvasEl.style.height = clientHeight + 'px'
-      starCanvasEl.getContext('2d').scale(2, 2)
+        var contentWrap = document.querySelector(".content--wrap");
+        var canvasEl = document.querySelector(".fireworksCanvas");
+        var starCanvasEl = document.querySelector(".stars");
+        var clientHeight = contentWrap.clientHeight;
+        var clientWidth = contentWrap.clientWidth;
+        this.starCoords(clientWidth, clientHeight);
+        starCanvasEl.width = window.innerWidth * 2;
+        starCanvasEl.height = window.innerHeight * 2;
+        starCanvasEl.style.width = clientWidth + "px";
+        starCanvasEl.style.height = clientHeight + "px";
+        starCanvasEl.getContext("2d").scale(2, 2);
 
-      canvasEl.width = window.innerWidth * 2
-      canvasEl.height = window.innerHeight * 2
-      canvasEl.style.width = clientWidth + 'px'
-      canvasEl.style.height = clientHeight + 'px'
-      canvasEl.getContext('2d').scale(2, 2)
-      var ctx = canvasEl.getContext('2d')
-      anime({
-      duration: Infinity,
-      update: function() {
-        //Sets all pixels in the rectangle defined by starting point (x, y) and size (width, height) to transparent black, erasing any previously drawn content.
-        ctx.clearRect(0, 0, canvasEl.width, canvasEl.height)
-      }
-    })
-      })
+        canvasEl.width = window.innerWidth * 2;
+        canvasEl.height = window.innerHeight * 2;
+        canvasEl.style.width = clientWidth + "px";
+        canvasEl.style.height = clientHeight + "px";
+        canvasEl.getContext("2d").scale(2, 2);
+        var ctx = canvasEl.getContext("2d");
+        anime({
+          duration: Infinity,
+          update: function() {
+            //Sets all pixels in the rectangle defined by starting point (x, y) and size (width, height) to transparent black, erasing any previously drawn content.
+            ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
+          }
+        });
+      });
     },
     updateCoords(event) {
-      var canvasHeight = document.querySelector('.fireworksCanvas').height
-      this.layerX = event.layerX 
-      this.layerY = event.layerY + ((event.layerY/canvasHeight) * (canvasHeight/13) ) 
+      var canvasHeight = document.querySelector(".fireworksCanvas").height;
+      this.layerX = event.layerX;
+      this.layerY =
+        event.layerY + event.layerY / canvasHeight * (canvasHeight / 13);
       //ClientY does the exact oppisite
-      this.animateParticules(this.layerX , this.layerY)
-},
+      this.animateParticules(this.layerX, this.layerY);
+    },
     setParticuleDirection(particle) {
-      var angle = anime.random(0, 360) * Math.PI / 180
-      var value = anime.random(50, 180)
-      var radius = [-1, 1][anime.random(0, 1)] * value
+      var angle = anime.random(0, 360) * Math.PI / 180;
+      var value = anime.random(50, 180);
+      var radius = [-1, 1][anime.random(0, 1)] * value;
       return {
         x: particle.x + radius * Math.cos(angle),
         y: particle.y + radius * Math.sin(angle)
+      };
+    },
+    createParticule(x, y) {
+      var particle = {};
+      particle.x = x;
+      particle.y = y;
+      particle.color = this.colors[anime.random(0, this.colors.length - 1)];
+      particle.radius = anime.random(16, 32);
+      particle.endPos = this.setParticuleDirection(particle);
+      var canvasEl = document.querySelector(".fireworksCanvas");
+      var ctx = canvasEl.getContext("2d");
+      particle.draw = function() {
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.radius, 0, 2 * Math.PI, true);
+        ctx.fillStyle = particle.color;
+        ctx.fill();
+      };
+      return particle;
+    },
+    createCircle(x, y) {
+      var particle = {};
+      particle.x = x;
+      particle.y = y;
+      particle.color = "#FFF";
+      particle.radius = 0.1;
+      particle.alpha = 0.5;
+      particle.lineWidth = 6;
+      particle.draw = function() {
+        var canvasEl = document.querySelector(".fireworksCanvas");
+        var ctx = canvasEl.getContext("2d");
+        ctx.globalAlpha = particle.alpha;
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.radius, 0, 2 * Math.PI, true);
+        ctx.lineWidth = particle.lineWidth;
+        ctx.strokeStyle = particle.color;
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+      };
+      return particle;
+    },
+    renderParticule(anim) {
+      for (var i = 0; i < anim.animatables.length; i++) {
+        anim.animatables[i].target.draw();
       }
     },
-    createParticule(x,y) {
-      var particle = {}
-      particle.x = x
-      particle.y = y
-      particle.color = this.colors[anime.random(0, this.colors.length - 1)]
-      particle.radius = anime.random(16, 32)
-      particle.endPos = this.setParticuleDirection(particle)
-      var canvasEl = document.querySelector('.fireworksCanvas')
-      var ctx = canvasEl.getContext('2d')
+    animateParticules(x, y) {
+      var circle = this.createCircle(x, y);
+      var particules = [];
+      for (var i = 0; i < this.numberOfParticules; i++) {
+        particules.push(this.createParticule(x, y));
+      }
+      anime
+        .timeline()
+        .add({
+          targets: particules,
+          x: function(particle) {
+            return particle.endPos.x;
+          },
+          y: function(particle) {
+            return particle.endPos.y;
+          },
+          radius: 0.1,
+          duration: anime.random(1200, 1800),
+          easing: "easeOutExpo",
+          update: this.renderParticule
+        })
+        .add({
+          targets: circle,
+          radius: anime.random(80, 160),
+          lineWidth: 0,
+          alpha: {
+            value: 0,
+            easing: "linear",
+            duration: anime.random(600, 800)
+          },
+          duration: anime.random(1200, 1800),
+          easing: "easeOutExpo",
+          update: this.renderParticule,
+          offset: 0
+        });
+    },
+    animate(x, y) {
+      var circle = this.createCircle(x, y);
+      var particules = [];
+      for (var i = 0; i < this.numberOfParticules; i++) {
+        particules.push(this.createParticule(x, y));
+      }
+      anime
+        .timeline()
+        .add({
+          targets: particules,
+          x: function(particle) {
+            return particle.endPos.x;
+          },
+          y: function(particle) {
+            return particle.endPos.y;
+          },
+          radius: 0.1,
+          duration: anime.random(1200, 1800),
+          easing: "easeOutExpo",
+          update: this.renderParticule
+        })
+        .add({
+          targets: circle,
+          radius: anime.random(80, 160),
+          lineWidth: 0,
+          alpha: {
+            value: 0,
+            easing: "linear",
+            duration: anime.random(600, 800)
+          },
+          duration: anime.random(1200, 1800),
+          easing: "easeOutExpo",
+          update: this.renderParticule,
+          offset: 0
+        });
+    },
+    //Star animations
+    starCoords(clientWidth, clientHeight) {
+      for (let i = 0; i < 20; i++) {
+        window.setInterval(
+          this.animateStarParticules(
+            anime.random(50, clientWidth - 50),
+            anime.random(50, clientHeight - 50)
+          ),
+          2000
+        );
+      }
+    },
+    animateStarParticules(x, y) {
+      var circle = this.createStarCircle(x, y);
+      var particules = [];
+      for (var i = 0; i < this.numberOfParticules; i++) {
+        particules.push(this.createStarParticule(x, y));
+      }
+      anime.timeline().add({
+        targets: particules,
+        x: function(particle) {
+          return particle.endPos.x;
+        },
+        y: function(particle) {
+          return particle.endPos.y;
+        },
+        radius: 0.1,
+        delay: 1000,
+        duration: anime.random(1200, 1800),
+        easing: "easeOutExpo",
+        update: this.renderParticule
+      });
+    },
+    createStarCircle(x, y) {
+      var particle = {};
+      particle.x = x;
+      particle.y = y;
+      particle.color = "#FFF";
+      particle.radius = 0.1;
+      particle.alpha = 0.5;
+      particle.lineWidth = 6;
       particle.draw = function() {
-        ctx.beginPath()
-        ctx.arc(particle.x, particle.y, particle.radius, 0, 2 * Math.PI, true)
-        ctx.fillStyle = particle.color
-        ctx.fill()
-  }
-  return particle
-},
-createCircle(x,y) {
-  var particle = {}
-  particle.x = x
-  particle.y = y
-  particle.color = '#FFF'
-  particle.radius = 0.1
-  particle.alpha = .5
-  particle.lineWidth = 6
-  particle.draw = function() {
-    var canvasEl = document.querySelector('.fireworksCanvas')
-    var ctx = canvasEl.getContext('2d')
-    ctx.globalAlpha = particle.alpha
-    ctx.beginPath()
-    ctx.arc(particle.x, particle.y, particle.radius, 0, 2 * Math.PI, true)
-    ctx.lineWidth = particle.lineWidth
-    ctx.strokeStyle = particle.color
-    ctx.stroke()
-    ctx.globalAlpha = 1
-}
-return particle
-},
-renderParticule(anim) {
-  for (var i = 0; i < anim.animatables.length; i++) {
-    anim.animatables[i].target.draw()
-  }
-},
-animateParticules(x, y) {
-  var circle = this.createCircle(x , y )
-  var particules = []
-  for (var i = 0; i < this.numberOfParticules; i++) {
-    particules.push(this.createParticule(x, y))
-  }
-  anime.timeline().add({
-    targets: particules,
-    x: function(particle) { return particle.endPos.x },
-    y: function(particle) { return particle.endPos.y },
-    radius: 0.1,
-    duration: anime.random(1200, 1800),
-    easing: 'easeOutExpo',
-    update: this.renderParticule
-  })
-    .add({
-    targets: circle,
-    radius: anime.random(80, 160),
-    lineWidth: 0,
-    alpha: {
-      value: 0,
-      easing: 'linear',
-      duration: anime.random(600, 800),
+        var canvasEl = document.querySelector(".stars");
+        var ctx = canvasEl.getContext("2d");
+        ctx.globalAlpha = particle.alpha;
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.radius, 0, 2 * Math.PI, true);
+        ctx.lineWidth = particle.lineWidth;
+        ctx.strokeStyle = particle.color;
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+      };
+      return particle;
     },
-    duration: anime.random(1200, 1800),
-    easing: 'easeOutExpo',
-    update: this.renderParticule,
-    offset: 0
-})
-},
-animate(x, y) {
-  var circle = this.createCircle(x , y )
-  var particules = []
-  for (var i = 0; i < this.numberOfParticules; i++) {
-    particules.push(this.createParticule(x, y))
-  }
-  anime.timeline().add({
-    targets: particules,
-    x: function(particle) { return particle.endPos.x },
-    y: function(particle) { return particle.endPos.y },
-    radius: 0.1,
-    duration: anime.random(1200, 1800),
-    easing: 'easeOutExpo',
-    update: this.renderParticule
-  })
-    .add({
-    targets: circle,
-    radius: anime.random(80, 160),
-    lineWidth: 0,
-    alpha: {
-      value: 0,
-      easing: 'linear',
-      duration: anime.random(600, 800),
+    createStarParticule(x, y) {
+      var particle = {};
+      particle.x = x;
+      particle.y = y;
+      particle.color = this.colors[anime.random(0, this.colors.length - 1)];
+      particle.radius = anime.random(16, 32);
+      particle.endPos = this.setParticuleDirection(particle);
+      var canvasEl = document.querySelector(".stars");
+      var ctx = canvasEl.getContext("2d");
+      particle.draw = function() {
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.radius, 0, 2 * Math.PI, true);
+        ctx.fillStyle = particle.color;
+        ctx.fill();
+      };
+      return particle;
     },
-    duration: anime.random(1200, 1800),
-    easing: 'easeOutExpo',
-    update: this.renderParticule,
-    offset: 0
-})
-},
-//Star animations
-starCoords(clientWidth, clientHeight){
-  for (let i = 0; i <20; i++) {
-    window.setInterval(this.animateStarParticules(
-      anime.random(50, clientWidth-50), 
-      anime.random(50, clientHeight-50)
-    ), 2000)
-  }
-  },
-animateStarParticules(x, y) {
-  var circle = this.createStarCircle(x , y )
-  var particules = []
-  for (var i = 0; i < this.numberOfParticules; i++) {
-    particules.push(this.createStarParticule(x, y))
-  }
-  anime.timeline().add({
-    targets: particules,
-    x: function(particle) { return particle.endPos.x },
-    y: function(particle) { return particle.endPos.y },
-    radius: 0.1,
-    delay: 1000,
-    duration: anime.random(1200, 1800),
-    easing: 'easeOutExpo',
-    update: this.renderParticule
-  })
-},
-createStarCircle(x,y) {
-var particle = {}
-particle.x = x
-particle.y = y
-particle.color = '#FFF'
-particle.radius = 0.1
-particle.alpha = .5
-particle.lineWidth = 6
-particle.draw = function() {
-  var canvasEl = document.querySelector('.stars')
-  var ctx = canvasEl.getContext('2d')
-  ctx.globalAlpha = particle.alpha
-  ctx.beginPath()
-  ctx.arc(particle.x, particle.y, particle.radius, 0, 2 * Math.PI, true)
-  ctx.lineWidth = particle.lineWidth
-  ctx.strokeStyle = particle.color
-  ctx.stroke()
-  ctx.globalAlpha = 1
-}
-return particle
-},
-  createStarParticule(x,y) {
-    var particle = {}
-    particle.x = x
-    particle.y = y
-    particle.color = this.colors[anime.random(0, this.colors.length - 1)]
-    particle.radius = anime.random(16, 32)
-    particle.endPos = this.setParticuleDirection(particle)
-    var canvasEl = document.querySelector('.stars')
-    var ctx = canvasEl.getContext('2d')
-    particle.draw = function() {
-      ctx.beginPath()
-      ctx.arc(particle.x, particle.y, particle.radius, 0, 2 * Math.PI, true)
-      ctx.fillStyle = particle.color
-      ctx.fill()
-}
-return particle
-},
-
-
-
-
-  //Drawer
     hideDrawer(boolean) {
       if (boolean) {
-        this.animateFireworks
-        this.fireworks = true
+        this.animateFireworks;
+        this.fireworks = true;
       } else {
-        this.fireworks = false
+        this.fireworks = false;
       }
-      this.drawer = false
-      return Promise.resolve(this)
+      this.drawer = false;
+      return Promise.resolve(this);
     },
     changeText() {
-      var CurrentTechName = event.target.innerText.trim()
-      this.CurrentTechName = CurrentTechName
-      return Promise.resolve(this)
+      var CurrentTechName = event.target.innerText.trim();
+      this.CurrentTechName = CurrentTechName;
+      return Promise.resolve(this);
     },
-    changeTechObject(){
-      let matchedNav = this.technology.filter(tech => tech.name === this.CurrentTechName)[0]
+    changeTechObject() {
+      let matchedNav = this.technology.filter(
+        tech => tech.name === this.CurrentTechName
+      )[0];
       if (matchedNav) {
-        this.CurrentTechObject = matchedNav
+        this.CurrentTechObject = matchedNav;
       } else {
-        console.warn('WTF?!?!', matchedNav, 'this.technology.length=', this.technology.length, 'this.CurrentTechName=', this.CurrentTechName)
+        console.warn(
+          "WTF?!?!",
+          matchedNav,
+          "this.technology.length=",
+          this.technology.length,
+          "this.CurrentTechName=",
+          this.CurrentTechName
+        );
       }
-      return Promise.resolve(this)
+      return Promise.resolve(this);
     },
-    changeTechRoute(){
-      this.$router.push('CurrentTech')
-      return Promise.resolve(this)
+    changeTechRoute() {
+      this.$router.push("CurrentTech");
+      return Promise.resolve(this);
     },
-    disableFireworks(){
-      this.fireworks = false
-      this.stars = false
-      return Promise.resolve(this)
+    disableFireworks() {
+      this.fireworks = false;
+      this.stars = false;
+      return Promise.resolve(this);
     },
     changeCurrentTech() {
       return Promise.resolve()
@@ -364,66 +388,108 @@ return particle
         .then(this.changeText)
         .then(this.changeTechObject)
         .then(this.hideDrawer(false))
-        .then(this.changeTechRoute)
+        .then(this.changeTechRoute);
     }
   }
-}
-
+};
 </script>
 
 <style>
 .content--wrap {
-  text-align: left!important;
+  text-align: left !important;
 }
 h3 {
   z-index: 0;
 }
-.ltr1, .ltr4, .ltr8, .ltr11, .ltr15, .ltr16  {
-  color: #4A148C;
+.ltr1,
+.ltr4,
+.ltr8,
+.ltr11,
+.ltr15,
+.ltr16 {
+  color: #4a148c;
 }
-.ltr2, .ltr5, .ltr7, .ltr12, .ltr17 {
-  color: #9C27B0;
+.ltr2,
+.ltr5,
+.ltr7,
+.ltr12,
+.ltr17 {
+  color: #9c27b0;
 }
-.ltr3, .ltr9, .ltr13, .ltr18 {
-  color: #EC407A;
+.ltr3,
+.ltr9,
+.ltr13,
+.ltr18 {
+  color: #ec407a;
 }
-.ltr6, .ltr10, .ltr14, .ltr19 {
-  color: #1A237E;
+.ltr6,
+.ltr10,
+.ltr14,
+.ltr19 {
+  color: #1a237e;
 }
 .unselectable {
-    -moz-user-select: -moz-none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -o-user-select: none;
-    user-select: none;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }
-#backgroundCanvas, #clickCanvas {
-  height: 90vh!important;
-  width: 100vw!important;
+#backgroundCanvas,
+#clickCanvas {
+  height: 90vh !important;
+  width: 100vw !important;
   position: absolute;
 }
 #backgroundCanvas {
-z-index: 0;
+  z-index: 0;
 }
-v-card, #clickCanvas {
-    z-index: 1;
-    -moz-user-select: -moz-none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -o-user-select: none;
-    user-select: none;
+v-card,
+#clickCanvas {
+  z-index: 1;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }
-.bg-black { background-color: #1b1b1b; }
-.color-01 { color: #ff1461; } /* Red */
-.color-02 { color: #FF7C72; } /* Orange */
-.color-03 { color: #FBF38C; } /* Yellow */
-.color-04 { color: #A6FF8F; } /* Citrus */
-.color-05 { color: #18FF92; } /* Green */
-.color-06 { color: #1CE2B2; } /* Darkgreen */
-.color-07 { color: #5EF3FB; } /* Turquoise */
-.color-08 { color: #61C3FF; } /* Lightblue */
-.color-09 { color: #5A87FF; } /* Blue */
-.color-10 { color: #8453E3; } /* Purple */
-.color-11 { color: #C26EFF; } /* Lavender */
-.color-12 { color: #FB89FB; } /* Pink */
+.bg-black {
+  background-color: #1b1b1b;
+}
+.color-01 {
+  color: #ff1461;
+} /* Red */
+.color-02 {
+  color: #ff7c72;
+} /* Orange */
+.color-03 {
+  color: #fbf38c;
+} /* Yellow */
+.color-04 {
+  color: #a6ff8f;
+} /* Citrus */
+.color-05 {
+  color: #18ff92;
+} /* Green */
+.color-06 {
+  color: #1ce2b2;
+} /* Darkgreen */
+.color-07 {
+  color: #5ef3fb;
+} /* Turquoise */
+.color-08 {
+  color: #61c3ff;
+} /* Lightblue */
+.color-09 {
+  color: #5a87ff;
+} /* Blue */
+.color-10 {
+  color: #8453e3;
+} /* Purple */
+.color-11 {
+  color: #c26eff;
+} /* Lavender */
+.color-12 {
+  color: #fb89fb;
+} /* Pink */
 </style>
