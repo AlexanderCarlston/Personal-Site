@@ -7,21 +7,74 @@
 
 ![textPicture](https://media.giphy.com/media/1ZnG301DuY9DSU1TKg/giphy.gif)
 
+First off I use a function called splitHTMLAndAnimateChildNodes, which does what it says.
+```
+    mounted () {
+    this.splitHTMLAndAnimateChildNodes(this.$refs.headline, '.anim .str__item')
+  }
+```
+
+
 * [Animated bubbles](https://github.com/AlexanderCarlston/Personal-Site/blob/master/src/App.vue)
 
 ![BubblePicture](https://media.giphy.com/media/2t9uOJyJQHxL6URamL/giphy.gif)
 
+
+
+
 * [Animated bubbles burst](https://github.com/AlexanderCarlston/Personal-Site/blob/master/src/App.vue)
 
 ![BubbleBurst](https://media.giphy.com/media/dtiBVHJm5VxoL8R6Ir/giphy.gif)
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Built With:
 * [Vue.js](https://vuejs.org/) - Front End Framework
 * [Vuetify](https://vuetifyjs.com/en/) - Fast design prototyping (might change to vanilla)
 * [Vue Router](https://router.vuejs.org/) - Navigation
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Uses:
 * [Server]() - PostgreSQL server
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Build Setup
 
